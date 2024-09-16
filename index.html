@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Grid</title>
+    <!--Css link-->
     <link rel="stylesheet" href="styles.css">
+    <!--bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Etch a Sketch</title>
+
 </head>
+
 <body>
-    <div class="controls">
-        <button id="resizeButton">Resize Grid</button>
+    <h1>Etch A Sketch</h1>
+
+    <div class="header">
+        <h6>Select the Size</h6>
+        <div id="popUp" class="btn btn-danger">Select</div>
     </div>
-    <div class="container" id="gridContainer"></div>
-    
+
+    <p id="message"></p>
+    <p id="draw"></p>
+
+    <div class="board"></div>
+
+    <div class="footer">
+        <button class="btn btn-dark" onclick="setColor('black')">Black</button>
+        <button class="btn btn-warning" onclick="setColor('random')">Random Color</button>
+        <button class="btn btn-info" onclick="resetBoard()">Reset</button>
+    </div>
+
+
     <script src="script.js"></script>
+
 </body>
+
 </html>

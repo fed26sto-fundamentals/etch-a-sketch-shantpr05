@@ -1,51 +1,94 @@
-// Select container and button elements
-const container = document.getElementById('gridContainer');
-const resizeButton = document.getElementById('resizeButton');
+let color = 'Black';
+let click = false;
+document.addEventListener('DOMContentLoaded', function () {
+    createBoard(16); // boards default grid size.
 
-// Function to create a grid with specified dimensions
-function createGrid(size) {
-    // Clear previous grid
-    container.innerHTML = '';
+    // only draw when button is clicked 
 
-    // Set up the grid dimensions dynamically
-    container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-    container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+    document.querySelector('body').addEventListener('click', function (e) {
+        if (e.target.tagName != 'BUTTON') {
+            click = !click;
 
-    for (let i = 0; i < size * size; i++) {
-        const gridItem = document.createElement('div');
-        gridItem.classList.add('grid-item');
-        container.appendChild(gridItem);
+            let draw = document.querySelector('#draw');
+            if (click) {
 
-        // Add hover effect with color change
-        gridItem.addEventListener('mouseover', changeColor);
+                draw.innerHTML = 'Ready to Draw ';
+            }
+            else {
+                draw.innerHTML = ' You are not allowed to draw';
+            };
+
+        };
+    });
+
+    let btn_popUp = document.querySelector('#popUp');
+    btn_popUp.addEventListener('click', function () {
+        let size = getSize();
+        createBoard(size);
+    });
+});
+
+// create funtion for 16* 16 grid 
+
+function createBoard(size) {
+    let board = document.querySelector('.board');
+    board.innerHTML = ''; // clear previous grid
+
+    let numDivs = size * size;
+    let divSize = 960 / size; // calculate div size based on board dimensions (500 width/height)
+
+
+    for (let i = 0; i < numDivs; i++) {
+        let div = document.createElement('div');
+        div.style.width = `${divSize}px`;
+        div.style.height = `${divSize}px`;
+        div.addEventListener('mouseover', colorDiv);
+        board.append(div);
     }
+
 }
 
-// Function to randomly change the color of a grid item
-function changeColor(e) {
-    const randomColor = `rgb(${randomValue()}, ${randomValue()}, ${randomValue()})`;
-    e.target.style.backgroundColor = randomColor;
-}
+// select size function
 
-// Helper function to generate random values between 0-255 for RGB colors
-function randomValue() {
-    return Math.floor(Math.random() * 256);
-}
-
-// Function to prompt the user for grid size and recreate the grid
-function resizeGrid() {
-    let newSize = prompt('Enter new grid size (Max 100):');
-    newSize = parseInt(newSize);
-
-    if (newSize && newSize > 0 && newSize <= 100) {
-        createGrid(newSize);
-    } else {
-        alert('Please enter a valid number between 1 and 100.');
+function getSize() {
+    let input = prompt('Input Size: ');
+    let message = document.querySelector('#message');
+    if (input === '') {
+        message.innerHTML = 'Input Grid size'
+        return 16; // default size 
     }
+    else if (input < 1 || input > 100) {
+        message.innerHTML = ' Input a number between 1 and 100'
+        return 16;
+    }
+    else {
+        message.innerHTML = 'ready to draw !!';
+        return input;
+    };
+
+};
+
+
+// drwing color Function
+
+function colorDiv() {
+    if (click) {
+        if (color == 'random') {
+            this.style.backgroundColor = `hsl(${Math.random() * 360} 100% 50%)`;
+        }
+        else {
+            this.style.backgroundColor = 'black';
+        };
+    };
+};
+
+function setColor(colorChoice){
+    color = colorChoice;
 }
 
-// Initialize the grid with a default size of 16
-createGrid(16);
+// reset 
 
-// Add event listener to the resize button
-resizeButton.addEventListener('click', resizeGrid);
+function resetBoard(){
+    let divs = document.querySelectorAll('.board div'); // Only reset grid squares
+    divs.forEach((div) => div.style.backgroundColor = 'white'); 
+}

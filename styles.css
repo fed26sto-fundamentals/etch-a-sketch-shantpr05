@@ -1,38 +1,32 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
+body{
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    background-color: #f4f4f4;
+    align-items: center;
+    flex-direction: column;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 400px;
+    justify-content: space-around;
+    margin-bottom: 10px;
 }
 
-.controls {
-    margin-bottom: 20px;
+.footer{
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
 }
-
-.container {
+.board{
     display: flex;
     flex-wrap: wrap;
-    width: 960px;
-    height: 960px;
-    border: 2px solid black;
-}
-
-.grid-item {
-    border: 1px solid #ddd;
-    flex-basis: calc(100% / 16); /* Each square takes up 1/16 of the width */
-    height: calc(100% / 16); /* Each square has a height that maintains the grid */
-    transition: background-color 0.2s ease;
-}
-
-/* Hover effect for each grid item */
-.grid-item:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+    margin: 10px auto;
+    border: 1px solid black;
+    width: 960px; /* fixed width for the board */
+    height: 960px;/* fixed height for the board */
+    overflow: hidden; /* prevents overflow outside the board*/
 }
