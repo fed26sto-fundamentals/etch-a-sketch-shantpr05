@@ -1,6 +1,10 @@
 # Project: Etch-a-Sketch
 
 
+[TOC]
+
+## Introduction
+
 This project is a dynamic, interactive grid sketchpad built using HTML, CSS, and JavaScript. It allows users to create a customizable grid where each cell changes color as the mouse hovers over it, similar to a pixel art tool.
 
 ## Features
