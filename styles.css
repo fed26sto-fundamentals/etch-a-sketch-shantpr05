@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 960px;
+    height: 960px;
+    border: 2px solid black;
+}
+
+.grid-item {
+    border: 1px solid #ddd;
+    flex-basis: calc(100% / 16); /* Each square takes up 1/16 of the width */
+    height: calc(100% / 16); /* Each square has a height that maintains the grid */
+    transition: background-color 0.2s ease;
+}
+
+/* Hover effect for each grid item */
+.grid-item:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
